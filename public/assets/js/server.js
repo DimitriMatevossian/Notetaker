@@ -6,7 +6,6 @@ const path = require('path');
 
 app.use(express.static('../..'));
 
-app.use(require('./routes'));
 
 app.use(express.static('public'));
 
@@ -14,9 +13,13 @@ app.route('/notes').get((req, res) => {
   res.redirect('/notes.html');
 });
 
+/*
 app.use((req, res) => {
   res.status(404).send('Unknown Request');
 });
+*/
+
+app.use(require('./routes'));
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);

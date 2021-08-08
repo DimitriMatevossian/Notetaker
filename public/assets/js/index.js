@@ -33,6 +33,8 @@ const getNotes = () =>
     },
   });
 
+  
+
 const saveNote = (note) =>
   fetch('/api/notes', {
     method: 'POST',
@@ -181,3 +183,9 @@ if (window.location.pathname === '/notes') {
 }
 
 getAndRenderNotes();
+
+
+
+getNotes().then((data) => {
+  console.log("****",data);
+})
