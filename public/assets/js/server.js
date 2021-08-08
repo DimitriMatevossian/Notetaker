@@ -1,23 +1,17 @@
 const express = require('express');
 const app = express();
-const port = 3001;
-//const fs = require('fs');
+const port = process.env.PORT || 3001;
 const path = require('path');
 
 app.use(express.static('../..'));
 
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 app.route('/notes').get((req, res) => {
-  res.redirect('/notes.html');
+  res.sendFile(path.join(__dirname, '../../notes.html'));
 });
-
-/*
-app.use((req, res) => {
-  res.status(404).send('Unknown Request');
-});
-*/
 
 app.use(require('./routes'));
 
